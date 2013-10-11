@@ -1,0 +1,26 @@
+<jxb:bindings version="1.0"
+               xmlns:jxb="http://java.sun.com/xml/ns/jaxb"
+               xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<jxb:bindings schemaLocation="description.xsd" node="/xs:schema">
+		
+		<jxb:bindings node="//xs:complexType[@name='shiptotype']">
+		
+			<jxb:bindings node="//xs:element[@name='name']">
+				<jxb:property name="fullName"/>
+			</jxb:bindings>
+		
+			<jxb:bindings node="//xs:element[@name='city']">
+				<jxb:property name="homeCity"/>
+			</jxb:bindings>
+			
+	
+		</jxb:bindings>
+		
+		<jxb:bindings node="//xs:complexType[@name='shipordertype']">
+			<jxb:class name="shipOrder"/>
+		</jxb:bindings>
+		
+	</jxb:bindings>
+	
+	
+</jxb:bindings>
