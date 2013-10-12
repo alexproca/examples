@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<shiporder>
+	<content orderid="512">
+		<orderperson>Rein Deer</orderperson>
+		<shipto>
+			<name>Santa</name>
+			<address>Antarctida</address>
+			<city>North Pole</city>
+			<country>No Country</country>
+		</shipto>
+	</content>
+</shiporder>

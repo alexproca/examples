@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
+	<xs:element name="shiporder">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="content" type="shipordertype" minOccurs="0" maxOccurs="1" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
 	<xs:simpleType name="stringtype">
 		<xs:restriction base="xs:string" />
 	</xs:simpleType>
@@ -46,6 +54,5 @@
 		<xs:attribute name="orderid" type="orderidtype" use="required" />
 	</xs:complexType>
 
-	<xs:element name="shiporder" type="shipordertype" />
 
 </xs:schema>

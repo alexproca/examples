@@ -17,7 +17,7 @@
 		</jxb:bindings>
 		
 		<jxb:bindings node="//xs:complexType[@name='shipordertype']">
-			<jxb:class name="shipOrder"/>
+			<jxb:class name="shipOrderClass"/>
 		</jxb:bindings>
 		
 	</jxb:bindings>
