@@ -2,6 +2,12 @@
 .settings/
 .project
 target/
+<<<<<<< HEAD
 *~
 .idea
 *.iml
+=======
+.idea/
+*.iml
+*~
+>>>>>>> 8fa7b92... logic minimization util

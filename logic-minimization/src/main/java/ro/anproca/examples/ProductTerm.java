@@ -52,180 +52,187 @@ package ro.anproca.examples;//$Id: ro.anproca.examples.ProductTerm.java,v 1.2 20
 
 //  Class ro.anproca.examples.ProductTerm
 //  ------------------------------------------------------------------
+
 /**
-  *   Represents a product term in a boolean expression.
-  *
-  *   @version  1.0 - Fall, 2000
-  *   @author   C. Vickery
-  */
-  public class ProductTerm implements Comparable
-  {
+ * Represents a product term in a boolean expression.
+ *
+ * @author C. Vickery
+ * @version 1.0 - Fall, 2000
+ */
+public class ProductTerm implements Comparable {
     public final static ProductTerm identity =
-                                  new ProductTerm( 0, 0, new char[0] );
-    int     value;
-    int     mask;
-    int     numLiterals;
-    char[]  variableNames;
-    int     numVars;
-    int     coverCount;   //  If this is a minterm, how many
-                          //  prime implicants cover it.
+            new ProductTerm(0, 0, new char[0]);
+    int value;
+    int mask;
+    int numLiterals;
+    char[] variableNames;
+    int numVars;
+    int coverCount;   //  If this is a minterm, how many
+    //  prime implicants cover it.
 
 
-  //  Constructor
-  //  ----------------------------------------------------------------
-  /**
-    *   Initialized a product term object with the bitmap
-    *   representation the values of the variables and a bitmask
-    *   indicating which variables are used in the term.  Needs a
-    *   reference to the array of variable names so toString() can
-    *   return a properly formatted representation of the term.
-    */
-    public ProductTerm( int value, int mask, char[] variableNames )
-    {
-      this.value = value;
-      this.mask  = mask;
-      this.numLiterals = BitManipulation.countBits( mask );
-      this.variableNames = variableNames;
-      this.numVars = variableNames.length;
-      this.coverCount = 0;
+    //  Constructor
+    //  ----------------------------------------------------------------
+
+    /**
+     * Initialized a product term object with the bitmap
+     * representation the values of the variables and a bitmask
+     * indicating which variables are used in the term.  Needs a
+     * reference to the array of variable names so toString() can
+     * return a properly formatted representation of the term.
+     */
+    public ProductTerm(int value, int mask, char[] variableNames) {
+        this.value = value;
+        this.mask = mask;
+        this.numLiterals = BitManipulation.countBits(mask);
+        this.variableNames = variableNames;
+        this.numVars = variableNames.length;
+        this.coverCount = 0;
     }
 
     public int
-    getValue()          { return value;                   }
+    getValue() {
+        return value;
+    }
 
     public int
-    getMask()           { return mask;                    }
+    getMask() {
+        return mask;
+    }
 
     public char[]
-    getVariableNames()  { return variableNames;           }
+    getVariableNames() {
+        return variableNames;
+    }
 
     public int
-    getNumLiterals()    { return numLiterals;             }
+    getNumLiterals() {
+        return numLiterals;
+    }
 
     public boolean
-    isMinterm()         { return numLiterals == numVars;  }
-
-    public void clearCoverCount()
-    {
-      coverCount = 0;
+    isMinterm() {
+        return numLiterals == numVars;
     }
 
-    public void incrementCoverCount()
-    {
-      coverCount++;
+    public void clearCoverCount() {
+        coverCount = 0;
     }
 
-    public int getCoverCount() { return coverCount; }
+    public void incrementCoverCount() {
+        coverCount++;
+    }
+
+    public int getCoverCount() {
+        return coverCount;
+    }
 
 
-  //  Method compareTo()
-  //  --------------------------------------------------------------
-  /**
-    *   The size of a product term is defined here as the number of
-    *   literals it contains.
-    *   This implementation of the Comparable interface is NOT
-    *   consistent with equals().
-    */
-    public int compareTo( Object x )
-    {
-      return ((ProductTerm)x).numLiterals - numLiterals;
+    //  Method compareTo()
+    //  --------------------------------------------------------------
+
+    /**
+     * The size of a product term is defined here as the number of
+     * literals it contains.
+     * This implementation of the Comparable interface is NOT
+     * consistent with equals().
+     */
+    public int compareTo(Object x) {
+        return ((ProductTerm) x).numLiterals - numLiterals;
     }
 
     //  Method reduces()
     //  --------------------------------------------------------------
-    /**
-      *   Returns true if this and target can be reduced by eliminating
-      *   one variable.
-      *
-      *   @param target   The ro.anproca.examples.ProductTerm to be combined with this one.
-      *   @param reduced  The potentially reduced product term, which
-      *                   will have its value and mask set if reduction
-      *                   can be done.
-      *   @return true if the two terms can be reduced.
-      */
-      public ProductTerm reduces( ProductTerm target )
-      {
-        if ( target.mask == mask ) // same variables?
-        {
-          if ( mask == 0 )
-            return identity;
 
-          int difference = (target.value & mask) ^ (value & mask);
-          if ( 1 == BitManipulation.countBits( difference ) )
-          {
-          ProductTerm reduced = new ProductTerm( ~difference & value,
-                                                 ~difference & mask,
-                                                 variableNames );
-          return reduced;
-          }
+    /**
+     * Returns true if this and target can be reduced by eliminating
+     * one variable.
+     *
+     * @param target  The ro.anproca.examples.ProductTerm to be combined with this one.
+     * @param reduced The potentially reduced product term, which
+     *                will have its value and mask set if reduction
+     *                can be done.
+     * @return true if the two terms can be reduced.
+     */
+    public ProductTerm reduces(ProductTerm target) {
+        if (target.mask == mask) // same variables?
+        {
+            if (mask == 0)
+                return identity;
+
+            int difference = (target.value & mask) ^ (value & mask);
+            if (1 == BitManipulation.countBits(difference)) {
+                ProductTerm reduced = new ProductTerm(~difference & value,
+                        ~difference & mask,
+                        variableNames);
+                return reduced;
+            }
         }
         return null;
-      }
+    }
 
 
     //  Method equals()
     //  --------------------------------------------------------------
-    /**
-      *   Does this term equal the target?  That is, does this term
-      *   have any variables in common with the target, and if so do
-      *   they have the same values?
-      *
-      *   @param target The product term to be tested for equality.
-      *   @return       True if this term implies the target.
-      */
-    public boolean equals( ProductTerm target )
-    {
 
-      return (value == target.getValue()) &&
-             (mask == target.getMask());
+    /**
+     * Does this term equal the target?  That is, does this term
+     * have any variables in common with the target, and if so do
+     * they have the same values?
+     *
+     * @param target The product term to be tested for equality.
+     * @return True if this term implies the target.
+     */
+    public boolean equals(ProductTerm target) {
+
+        return (value == target.getValue()) &&
+                (mask == target.getMask());
     }
 
 
     //  Method covers()
     //  --------------------------------------------------------------
+
     /**
-      *   Does this term cover the target?  That is, will the target
-      *   be true whenever this is true?
-      *
-      *   @param target The product term to be tested for coverage.
-      *   @return       True if this term implies the target.
-      */
-    public boolean covers( ProductTerm target )
-    {
-      return (value & mask) == (target.getValue() & mask);
+     * Does this term cover the target?  That is, will the target
+     * be true whenever this is true?
+     *
+     * @param target The product term to be tested for coverage.
+     * @return True if this term implies the target.
+     */
+    public boolean covers(ProductTerm target) {
+        return (value & mask) == (target.getValue() & mask);
     }
 
 
-  //  Method ptString()
-  //  ----------------------------------------------------------------
-  /**
-    *   Don't ask ...
-    */
-    public String ptString()
-    {
-      if ( mask == 0 ) return "1";
-      StringBuffer sb = new StringBuffer();
-      for (int i=numVars-1; i>=0; i--)
-      {
-        if ( (mask & (1<<i)) != 0 )
-        {
-          sb.append( variableNames[(numVars-1)-i] );
-          if ( (value & (1<<i)) == 0)
-            sb.append( '\'' );  // Negate
+    //  Method ptString()
+    //  ----------------------------------------------------------------
+
+    /**
+     * Don't ask ...
+     */
+    public String ptString() {
+        if (mask == 0) return "1";
+        StringBuffer sb = new StringBuffer();
+        for (int i = numVars - 1; i >= 0; i--) {
+            if ((mask & (1 << i)) != 0) {
+                sb.append(variableNames[(numVars - 1) - i]);
+                if ((value & (1 << i)) == 0)
+                    sb.append('\'');  // Negate
+            }
         }
-      }
-      return new String( sb );
+        return new String(sb);
     }
 
 
-  //  Method toString()
-  //  ----------------------------------------------------------------
-  /**
-    *   Returns the printable representation of the product term.
-    */
-    public String toString()
-    {
-      return ptString();
+    //  Method toString()
+    //  ----------------------------------------------------------------
+
+    /**
+     * Returns the printable representation of the product term.
+     */
+    public String toString() {
+        return ptString();
     }
 
-  }
+}

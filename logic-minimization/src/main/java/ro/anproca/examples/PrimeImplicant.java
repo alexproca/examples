@@ -54,127 +54,127 @@ import java.util.Vector;
 
 //  Class ro.anproca.examples.PrimeImplicant
 //  ------------------------------------------------------------------
+
 /**
-  *   Product term with list of minterms covered by it.  Sortable wrt
-  *   size of product term.
-  *
-  *   @version  1.0 - Fall 2000
-  *   @author   C. Vickery
-  */
-  public class PrimeImplicant extends ProductTerm
-                              implements Comparable
-  {
+ * Product term with list of minterms covered by it.  Sortable wrt
+ * size of product term.
+ *
+ * @author C. Vickery
+ * @version 1.0 - Fall 2000
+ */
+public class PrimeImplicant extends ProductTerm
+        implements Comparable {
 
-    protected Vector<ProductTerm>   covers = new Vector<ProductTerm>();
+    protected Vector<ProductTerm> covers = new Vector<ProductTerm>();
 
-  //  Constructor
-  //  ----------------------------------------------------------------
-  /**
-    *
-    *   Creates a prime implicant out of a product term by adding a
-    *   list of the minterms covered by this product term.  It's an
-    *   error if this product term doesn't cover any minterms.
-    */
-    public PrimeImplicant( ProductTerm pt, ProductTerm[] minterms )
-    {
-      super( pt.getValue(), pt.getMask(), pt.getVariableNames() );
-      boolean found = false;
-      for (int m=0; m<minterms.length; m++)
-      {
-        if ( covers( minterms[m] ) )
-        {
-          found = true;
-          covers.add( minterms[m] );
+    //  Constructor
+    //  ----------------------------------------------------------------
+
+    /**
+     * Creates a prime implicant out of a product term by adding a
+     * list of the minterms covered by this product term.  It's an
+     * error if this product term doesn't cover any minterms.
+     */
+    public PrimeImplicant(ProductTerm pt, ProductTerm[] minterms) {
+        super(pt.getValue(), pt.getMask(), pt.getVariableNames());
+        boolean found = false;
+        for (int m = 0; m < minterms.length; m++) {
+            if (covers(minterms[m])) {
+                found = true;
+                covers.add(minterms[m]);
+            }
         }
-      }
-      if ( ! found )
-        throw new RuntimeException( "Attempt to create a prime " +
-        "implicant that covers no minterms." );
+        if (!found)
+            throw new RuntimeException("Attempt to create a prime " +
+                    "implicant that covers no minterms.");
     }
 
 
-  //  addCover()
-  //  ----------------------------------------------------------------
-  /**
-    *   Adds a minterm to the list of minterms covered by this
-    *   prime implicant.
-    */
-    public void addCover( ProductTerm pt )
-    {
-      if ( ! pt.isMinterm() )
-      {
-        throw new RuntimeException( "Attempt to add " + pt.toString()
-        + " to the list of minterms covered by prime implicant " +
-        super.toString() + ", but " + pt.toString() +
-                                               " is not a minterm." );
-      }
-      if ( ! covers( pt ) )
-      {
-        throw new RuntimeException( "Attempt to add " + pt +
-        " to the list of minterms covered by prime implicant " +
-        super.toString() + ", but " + pt +  " is not covered by " +
-        super.toString() );
-      }
-      covers.add( pt );
+    //  addCover()
+    //  ----------------------------------------------------------------
+
+    /**
+     * Adds a minterm to the list of minterms covered by this
+     * prime implicant.
+     */
+    public void addCover(ProductTerm pt) {
+        if (!pt.isMinterm()) {
+            throw new RuntimeException("Attempt to add " + pt.toString()
+                    + " to the list of minterms covered by prime implicant " +
+                    super.toString() + ", but " + pt.toString() +
+                    " is not a minterm.");
+        }
+        if (!covers(pt)) {
+            throw new RuntimeException("Attempt to add " + pt +
+                    " to the list of minterms covered by prime implicant " +
+                    super.toString() + ", but " + pt + " is not covered by " +
+                    super.toString());
+        }
+        covers.add(pt);
 
     }
 
-  //  removeCover()
-  //  ----------------------------------------------------------------
-  /**
-    *   Removes an item from the list of covered minterms.  No error
-    *   if operation fails.
-    */
-    public void removeCover( ProductTerm pt )
-    {
-      covers.removeElement( pt );
+    //  removeCover()
+    //  ----------------------------------------------------------------
+
+    /**
+     * Removes an item from the list of covered minterms.  No error
+     * if operation fails.
+     */
+    public void removeCover(ProductTerm pt) {
+        covers.removeElement(pt);
     }
 
-  //  getCovers()
-  //  -----------------------------------------------------------------
-  /**
-    *   Returns Vector of covers.
-    */
-    public Vector<ProductTerm> getCovers() { return covers; }
+    //  getCovers()
+    //  -----------------------------------------------------------------
 
-
-  //  getCoverCount()
-  //  -----------------------------------------------------------------
-  /**
-    *   Returns how many minterms are covered by this prime implicant.
-    */
-    public int getCoverCount() { return covers.size(); }
-
-
-  //  getImplicant()
-  //  ----------------------------------------------------------------
-  /**
-   *  Returns the string representation of the implicant.
-   */
-  public String getImplicantString()
-  {
-    return super.toString();
-  }
-
-  
-  //  toString()
-  //  ----------------------------------------------------------------
-  /**
-    *   Returns the string representation of the implicant and the
-    *   product terms it covers.
-    */
-    public String toString()
-    {
-      StringBuffer sb = new StringBuffer( "[ " + super.toString() +
-                                                               " => ");
-      for (int i=0; i<covers.size(); i++)
-      {
-        sb.append( covers.elementAt(i) );
-        if ( i < (covers.size()-1) )
-          sb.append( ", " );
-      }
-      sb.append( " ]" );
-      return new String( sb );
+    /**
+     * Returns Vector of covers.
+     */
+    public Vector<ProductTerm> getCovers() {
+        return covers;
     }
 
-  }
+
+    //  getCoverCount()
+    //  -----------------------------------------------------------------
+
+    /**
+     * Returns how many minterms are covered by this prime implicant.
+     */
+    public int getCoverCount() {
+        return covers.size();
+    }
+
+
+    //  getImplicant()
+    //  ----------------------------------------------------------------
+
+    /**
+     * Returns the string representation of the implicant.
+     */
+    public String getImplicantString() {
+        return super.toString();
+    }
+
+
+    //  toString()
+    //  ----------------------------------------------------------------
+
+    /**
+     * Returns the string representation of the implicant and the
+     * product terms it covers.
+     */
+    public String toString() {
+        StringBuffer sb = new StringBuffer("[ " + super.toString() +
+                " => ");
+        for (int i = 0; i < covers.size(); i++) {
+            sb.append(covers.elementAt(i));
+            if (i < (covers.size() - 1))
+                sb.append(", ");
+        }
+        sb.append(" ]");
+        return new String(sb);
+    }
+
+}

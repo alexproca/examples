@@ -47,51 +47,48 @@ package ro.anproca.examples;//$Id: ro.anproca.examples.BitManipulation.java,v 1.
 
 //  Class ro.anproca.examples.BitManipulation
 //  ------------------------------------------------------------------
+
 /**
-  *   Static methods for manipulating bits in an integer.
-  *
-  *   @version  1.0   Fall, 2000
-  *   @author   C. Vickery
-  *
-  */
-  public class BitManipulation
-  {
+ * Static methods for manipulating bits in an integer.
+ *
+ * @author C. Vickery
+ * @version 1.0   Fall, 2000
+ */
+public class BitManipulation {
 
-  //  Method reverseBits()
-  //  ----------------------------------------------------------------
-  /**
-    *   Returns an int with the bit pattern of the rightmost numBits
-    *   bits in source reversed from left to right.
-    */
-    public static int reverseBits( int source, int numBits )
-    {
-      int sourcePosition = 1 << (numBits - 1);
-      int destPosition   = 1;
-      int result = source & ~((int)Math.pow( 2, numBits ) -1);
-      for(int i=0; i<numBits; i++)
-      {
-        if ( (source & sourcePosition) != 0 )
-          result |= destPosition;
-        sourcePosition >>= 1;
-        destPosition <<= 1;
-      }
-      return result;
+    //  Method reverseBits()
+    //  ----------------------------------------------------------------
+
+    /**
+     * Returns an int with the bit pattern of the rightmost numBits
+     * bits in source reversed from left to right.
+     */
+    public static int reverseBits(int source, int numBits) {
+        int sourcePosition = 1 << (numBits - 1);
+        int destPosition = 1;
+        int result = source & ~((int) Math.pow(2, numBits) - 1);
+        for (int i = 0; i < numBits; i++) {
+            if ((source & sourcePosition) != 0)
+                result |= destPosition;
+            sourcePosition >>= 1;
+            destPosition <<= 1;
+        }
+        return result;
     }
 
 
-  //  Method countBits()
-  //  ----------------------------------------------------------------
-  /**
-    *   Returns the number of 1's in an int.
-    *
-    */
-    public static int countBits( int x )
-    {
-      int n = 0;
-      for (int i=0; i<32; i++)
-        if ( 0 != (x & (1<<i)) ) n++;
-      return n;
+    //  Method countBits()
+    //  ----------------------------------------------------------------
+
+    /**
+     * Returns the number of 1's in an int.
+     */
+    public static int countBits(int x) {
+        int n = 0;
+        for (int i = 0; i < 32; i++)
+            if (0 != (x & (1 << i))) n++;
+        return n;
     }
 
-  }
+}
 
