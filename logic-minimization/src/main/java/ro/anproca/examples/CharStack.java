@@ -48,43 +48,26 @@ package ro.anproca.examples;//$Id: ro.anproca.examples.CharStack.java,v 1.1 2005
 //  Class ro.anproca.examples.CharStack
 //  ------------------------------------------------------------------
 
+import java.util.Iterator;
+import java.util.Stack;
+
 /**
  * Standard stack operations on a stack of chars.
  */
-public class CharStack {
-    private int capacity = 10;
-    private int top = -1;
+public class CharStack extends Stack<Character> {
 
-    private char[] theStack = new char[10];
-
-    public char pop() {
-        if (top < 0) throw new RuntimeException("Pop empty stack.");
-        return theStack[top--];
-    }
-
-    public void push(char x) {
-        if (++top >= capacity) {
-            char[] newStack = new char[capacity + capacity];
-            System.arraycopy(theStack, 0, newStack, 0, capacity);
-            theStack = newStack;
-            capacity += capacity;
-        }
-        theStack[top] = x;
-    }
-
-    public boolean isEmpty() {
-        return (top < 0);
-    }
-
-    public char peek() {
-        if (top < 0)
+    public Character peek() {
+        if (isEmpty())
             return '\0';
-        return theStack[top];
+        return super.peek();
     }
 
     public String toString() {
         StringBuffer sb = new StringBuffer("[");
-        for (int i = 0; i <= top; i++) sb.append(theStack[i]);
+
+        for (Iterator<Character> it = this.listIterator(); it.hasNext(); ) {
+            sb.append(it.next());
+        }
         sb.append("]");
         return new String(sb);
     }
