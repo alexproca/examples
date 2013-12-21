@@ -8,6 +8,8 @@
     <name>Logic functions minimization</name>
     <version>1.0.0-SNAPSHOT</version>
 
+    <description>http://babbage.cs.qc.edu/courses/Minimize/</description>
+
     <build>
         <plugins>
             <plugin>

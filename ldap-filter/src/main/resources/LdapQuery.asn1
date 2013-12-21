@@ -1,0 +1,49 @@
+--Sample ASN.1 Module
+LdapQuery DEFINITIONS ::= BEGIN
+  EXPORTS;
+
+  Filter ::= CHOICE {
+            and                [0] SET SIZE (1..MAX) OF filter Filter,
+            or                 [1] SET SIZE (1..MAX) OF filter Filter,
+            not                [2] Filter,
+            equalityMatch      [3] AttributeValueAssertion,
+            substrings         [4] SubstringFilter,
+            greaterOrEqual     [5] AttributeValueAssertion,
+            lessOrEqual        [6] AttributeValueAssertion,
+            present            [7] AttributeDescription,
+            approxMatch        [8] AttributeValueAssertion,
+            extensibleMatch    [9] MatchingRuleAssertion }
+
+        SubstringFilter ::= SEQUENCE {
+            type    AttributeDescription,
+            -- initial and final can occur at most once
+            substrings    SEQUENCE SIZE (1..MAX) OF substring CHOICE {
+             initial        [0] AssertionValue,
+             any            [1] AssertionValue,
+             final          [2] AssertionValue } }
+
+        AttributeValueAssertion ::= SEQUENCE {
+            attributeDesc   AttributeDescription,
+            assertionValue  AssertionValue }
+
+        MatchingRuleAssertion ::= SEQUENCE {
+            matchingRule    [1] MatchingRuleId OPTIONAL,
+            type            [2] AttributeDescription OPTIONAL,
+            matchValue      [3] AssertionValue,
+            dnAttributes    [4] BOOLEAN DEFAULT FALSE }
+
+        AttributeDescription ::= LDAPString
+                        -- Constrained to <attributedescription>
+                        -- [RFC4512]
+
+        AttributeValue ::= OCTET STRING
+
+        MatchingRuleId ::= LDAPString
+
+        AssertionValue ::= OCTET STRING
+
+        LDAPString ::= OCTET STRING -- UTF-8 encoded,
+                                    -- [Unicode] characters
+
+END
+              
