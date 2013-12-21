@@ -1,4 +1,4 @@
-//$Id: TruthTable.java,v 1.4 2005/02/21 23:32:16 vickery Exp $
+package ro.anproca.examples;//$Id: ro.anproca.examples.TruthTable.java,v 1.4 2005/02/21 23:32:16 vickery Exp $
 /*
  *  Author:     C. Vickery
  *
@@ -38,7 +38,7 @@
  *  OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  *  POSSIBILITY OF SUCH DAMAGE.
  *
- *  $Log: TruthTable.java,v $
+ *  $Log: ro.anproca.examples.TruthTable.java,v $
  *  Revision 1.4  2005/02/21 23:32:16  vickery
  *  Completed GUI.  Don't know how to scroll
  *  within a table cell, and list of covers can
@@ -46,7 +46,7 @@
  *
  *  Revision 1.3  2005/02/21 04:19:00  vickery
  *  Continuing GUI development.
- *  Fixed TruthTable to give variable names in alphabetic order, and to sort
+ *  Fixed ro.anproca.examples.TruthTable to give variable names in alphabetic order, and to sort
  *  minterm numbers.
  *
  *  Revision 1.2  2005/02/20 04:24:00  vickery
@@ -62,7 +62,7 @@ import java.util.Arrays;
 
 import javax.swing.table.AbstractTableModel;
 
-//  Class TruthTable
+//  Class ro.anproca.examples.TruthTable
 //  -------------------------------------------------------------------
 /**
   *   The truth table for a boolean expression.
@@ -306,7 +306,7 @@ import javax.swing.table.AbstractTableModel;
         }
       }
       //  Order the minterms numerically.
-      /*  Cannot use Arrays.sort, because ProductTerm implements
+      /*  Cannot use Arrays.sort, because ro.anproca.examples.ProductTerm implements
        *  a comparison based on the number of variables.  Fix this
        *  (bubble sort) if performance becomes an issue.
        */
@@ -566,7 +566,7 @@ import javax.swing.table.AbstractTableModel;
       StringBuffer sb = new StringBuffer( "[" );
       for (int m=0; m<minterms.length; m++)
       {
-//        sb.append(BitManipulation.reverseBits(minterms[m].value,
+//        sb.append(ro.anproca.examples.BitManipulation.reverseBits(minterms[m].value,
 //                                                      numVars) + ",");
         sb.append(minterms[m].value + ",");
       }
@@ -593,9 +593,9 @@ import javax.swing.table.AbstractTableModel;
       if ( argv.length < 1 )
       {
         System.err.println(
-                      "Usage: java TruthTable <boolean expression>" );
+                      "Usage: java ro.anproca.examples.TruthTable <boolean expression>" );
         System.err.println(
-                         "       java TruthTable <list of minterms>"
+                         "       java ro.anproca.examples.TruthTable <list of minterms>"
                          );
         System.exit( 1 );
       }

@@ -1,4 +1,4 @@
-//$Id: MinimizedTable.java,v 1.3 2005/02/21 23:32:15 vickery Exp $
+package ro.anproca.examples;//$Id: ro.anproca.examples.MinimizedTable.java,v 1.3 2005/02/21 23:32:15 vickery Exp $
 /*
  *  Author:     C. Vickery
  *
@@ -38,7 +38,7 @@
  *  OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  *  POSSIBILITY OF SUCH DAMAGE.
  *
- *  $Log: MinimizedTable.java,v $
+ *  $Log: ro.anproca.examples.MinimizedTable.java,v $
  *  Revision 1.3  2005/02/21 23:32:15  vickery
  *  Completed GUI.  Don't know how to scroll
  *  within a table cell, and list of covers can
@@ -46,7 +46,7 @@
  *
  *  Revision 1.2  2005/02/21 04:19:00  vickery
  *  Continuing GUI development.
- *  Fixed TruthTable to give variable names in alphabetic order, and to sort
+ *  Fixed ro.anproca.examples.TruthTable to give variable names in alphabetic order, and to sort
  *  minterm numbers.
  *
  *  Revision 1.1  2005/02/20 04:24:00  vickery
@@ -64,7 +64,7 @@ import java.util.Collections;
 import java.util.Enumeration;
 import java.util.Vector;
 
-//  Class MinimizedTable
+//  Class ro.anproca.examples.MinimizedTable
 //  -------------------------------------------------------------------
 /**
   *   Generates minimized sum of products representation of a truth
@@ -95,7 +95,7 @@ import java.util.Vector;
   //  ----------------------------------------------------------------
   /*
    *  These are to support the Table Model interface.  I've repeated
-   *  some that would be inherited from TruthTable, for clarity.
+   *  some that would be inherited from ro.anproca.examples.TruthTable, for clarity.
    */
     public int      getRowCount() { return primeImplicants.size(); }
     public int      getColumnCount()  { return 2; }
@@ -131,7 +131,7 @@ import java.util.Vector;
   //  ----------------------------------------------------------------
   /**
     *   Creates a minimized sum of products function equivalent to the
-    *   list of minterms provided by class TruthTable.
+    *   list of minterms provided by class ro.anproca.examples.TruthTable.
     *
     *   Algorithm:
     *   1.  Initialize the truth table, and create a list of all prime
@@ -569,9 +569,9 @@ primeImplicants.elementAt( j ) );
       if ( args.length < 1 )
       {
         System.err.println(
-                  "Usage: java MinimizedTable <boolean expression>" );
+                  "Usage: java ro.anproca.examples.MinimizedTable <boolean expression>" );
         System.err.println(
-                  "       java MinimizedTable <list of minterms>" );
+                  "       java ro.anproca.examples.MinimizedTable <list of minterms>" );
         System.exit( 1 );
       }
 

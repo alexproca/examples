@@ -1,4 +1,4 @@
-//$Id: CharStack.java,v 1.1 2005/02/12 16:51:22 vickery Exp $
+package ro.anproca.examples;//$Id: ro.anproca.examples.IntVector.java,v 1.1 2005/02/12 16:51:22 vickery Exp $
 /*
  *  Author:     C. Vickery
  *
@@ -38,57 +38,72 @@
  *  OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  *  POSSIBILITY OF SUCH DAMAGE.
  *
- *  $Log: CharStack.java,v $
+ *  $Log: ro.anproca.examples.IntVector.java,v $
  *  Revision 1.1  2005/02/12 16:51:22  vickery
  *  Revised to use generics for various Vectors and Enumerations.
  *
  *
  */
 
-//  Class CharStack
-//  ------------------------------------------------------------------
+//  Class ro.anproca.examples.IntVector
+//  -------------------------------------------------------------------
 /**
-  *   Standard stack operations on a stack of chars.
+  *   Just like a Vector (grows automatically), but for int primitives.
+  *
+  *   @author   C. Vickery
+  *   @version  1.0 - Fall 2000
   */
-  public class CharStack
+  public class IntVector
   {
-    private int     capacity  = 10;
-    private int     top       = -1;
+    protected int[] theVector = new int[1];
+    protected int   capacity  = 1;
+    protected int   increment = 10;
+    protected int   size      = 0;
 
-    private char[] theStack = new char[10];
-    public char pop()
+    //  Accessors
+    //  ---------------------------------------------------------------
+    public int getCapacity()  { return capacity; }
+    public int getIncrement() { return increment; }
+    public int getSize()      { return size; }
+
+    //  Method append()
+    //  ---------------------------------------------------------------
+    public void append( int val )
     {
-      if ( top < 0 ) throw new RuntimeException( "Pop empty stack." );
-      return theStack[top--];
-    }
-    public void push( char x )
-    {
-      if ( ++top >= capacity )
+      if ( (size + 1) >= capacity )
       {
-        char[] newStack = new char[ capacity + capacity ];
-        System.arraycopy( theStack, 0, newStack, 0, capacity );
-        theStack = newStack;
-        capacity += capacity;
+        int[] temp = new int[ capacity + increment ];
+        System.arraycopy( theVector, 0, temp, 0, size );
+        theVector = temp;
       }
-      theStack[top] = x;
-    }
-    public boolean isEmpty()
-    {
-      return (top < 0);
-    }
-    public char peek()
-    {
-      if ( top < 0 )
-        return '\0';
-      return theStack[top];
+      theVector[ size++ ] = val;
     }
 
+    //  Method toArray()
+    //  ---------------------------------------------------------------
+    /**
+      *   Clones current vector into an int[].
+      */
+      public int[] toArray()
+      {
+        int[] temp = new int[ size ];
+        System.arraycopy( theVector, 0, temp, 0, size );
+        return temp;
+      }
+
+
+    //  Method toString()
+    //  ---------------------------------------------------------------
     public String toString()
     {
       StringBuffer sb = new StringBuffer( "[" );
-      for ( int i=0; i<=top; i++ ) sb.append( theStack[i] );
+      for ( int i=0; i< size; i++ )
+      {
+        sb.append( theVector[i] );
+        if ( i < size-1 ) sb.append( ", " );
+      }
       sb.append( "]" );
       return new String( sb );
     }
-  }
 
+  }

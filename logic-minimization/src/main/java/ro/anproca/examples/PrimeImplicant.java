@@ -1,4 +1,4 @@
-//$Id: PrimeImplicant.java,v 1.2 2005/02/21 23:32:15 vickery Exp $
+package ro.anproca.examples;//$Id: ro.anproca.examples.PrimeImplicant.java,v 1.2 2005/02/21 23:32:15 vickery Exp $
 /*
  *  Author:     C. Vickery
  *
@@ -38,7 +38,7 @@
  *  OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  *  POSSIBILITY OF SUCH DAMAGE.
  *
- *  $Log: PrimeImplicant.java,v $
+ *  $Log: ro.anproca.examples.PrimeImplicant.java,v $
  *  Revision 1.2  2005/02/21 23:32:15  vickery
  *  Completed GUI.  Don't know how to scroll
  *  within a table cell, and list of covers can
@@ -52,7 +52,7 @@
 
 import java.util.Vector;
 
-//  Class PrimeImplicant
+//  Class ro.anproca.examples.PrimeImplicant
 //  ------------------------------------------------------------------
 /**
   *   Product term with list of minterms covered by it.  Sortable wrt

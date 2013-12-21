@@ -1,4 +1,4 @@
-//$Id: BitManipulation.java,v 1.1 2005/02/12 16:51:22 vickery Exp $
+package ro.anproca.examples;//$Id: ro.anproca.examples.BitManipulation.java,v 1.1 2005/02/12 16:51:22 vickery Exp $
 /*
  *  Author:     C. Vickery
  *
@@ -38,14 +38,14 @@
  *  OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  *  POSSIBILITY OF SUCH DAMAGE.
  *
- *  $Log: BitManipulation.java,v $
+ *  $Log: ro.anproca.examples.BitManipulation.java,v $
  *  Revision 1.1  2005/02/12 16:51:22  vickery
  *  Revised to use generics for various Vectors and Enumerations.
  *
  *
  */
 
-//  Class BitManipulation
+//  Class ro.anproca.examples.BitManipulation
 //  ------------------------------------------------------------------
 /**
   *   Static methods for manipulating bits in an integer.

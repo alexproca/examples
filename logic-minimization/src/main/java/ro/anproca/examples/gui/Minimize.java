@@ -1,4 +1,4 @@
-// $Id: Minimize.java,v 1.4 2005/02/21 23:32:15 vickery Exp $
+package ro.anproca.examples.gui;// $Id: ro.anproca.examples.gui.Minimize.java,v 1.4 2005/02/21 23:32:15 vickery Exp $
 /*
  * Created on Feb 19, 2005
  *
@@ -40,7 +40,7 @@
  *  OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  *  POSSIBILITY OF SUCH DAMAGE.
  *
- *  $Log: Minimize.java,v $
+ *  $Log: ro.anproca.examples.gui.Minimize.java,v $
  *  Revision 1.4  2005/02/21 23:32:15  vickery
  *  Completed GUI.  Don't know how to scroll
  *  within a table cell, and list of covers can
@@ -48,13 +48,16 @@
  *
  *  Revision 1.3  2005/02/21 04:19:00  vickery
  *  Continuing GUI development.
- *  Fixed TruthTable to give variable names in alphabetic order,
+ *  Fixed ro.anproca.examples.TruthTable to give variable names in alphabetic order,
  *  and to sort minterm numbers.
  *
  *  Revision 1.2  2005/02/20 04:24:00  vickery
  *  Started developing GUI.
  *
  */
+import ro.anproca.examples.MinimizedTable;
+import ro.anproca.examples.TruthTable;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
@@ -96,10 +99,10 @@ import javax.swing.table.AbstractTableModel;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableModel;
 
-//  Class Minimize
+//  Class ro.anproca.examples.gui.Minimize
 //  ------------------------------------------------------------------
 /**
- *  Provides a graphical interface for the MinimizedTable class.
+ *  Provides a graphical interface for the ro.anproca.examples.MinimizedTable class.
  */
 public class Minimize extends JFrame implements ClipboardOwner
 {
@@ -153,7 +156,7 @@ public class Minimize extends JFrame implements ClipboardOwner
   {
     super();
     //  Connect System.out to the processLog TextArea.  Used to disply
-    //  the commentary produced by MinimizedTable.minimizeIt(), which
+    //  the commentary produced by ro.anproca.examples.MinimizedTable.minimizeIt(), which
     //  normally appears on the console.
         ps = new PrintStream(
             new CapturedOutput(new ByteArrayOutputStream()));
@@ -346,8 +349,8 @@ public class Minimize extends JFrame implements ClipboardOwner
             entryIsExpression = true;
           }
           //  Invoke appropriate constructor
-          TruthTable      t         = null;
-          MinimizedTable  m         = null;
+          TruthTable t         = null;
+          MinimizedTable m         = null;
           try
           {
             if (entryIsExpression)

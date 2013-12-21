@@ -1,4 +1,4 @@
-//$Id: ProductTerm.java,v 1.2 2005/02/21 04:19:00 vickery Exp $
+package ro.anproca.examples;//$Id: ro.anproca.examples.ProductTerm.java,v 1.2 2005/02/21 04:19:00 vickery Exp $
 /*
  *  Author:     C. Vickery
  *
@@ -38,10 +38,10 @@
  *  OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  *  POSSIBILITY OF SUCH DAMAGE.
  *
- *  $Log: ProductTerm.java,v $
+ *  $Log: ro.anproca.examples.ProductTerm.java,v $
  *  Revision 1.2  2005/02/21 04:19:00  vickery
  *  Continuing GUI development.
- *  Fixed TruthTable to give variable names in alphabetic order, and to sort
+ *  Fixed ro.anproca.examples.TruthTable to give variable names in alphabetic order, and to sort
  *  minterm numbers.
  *
  *  Revision 1.1  2005/02/12 16:51:22  vickery
@@ -50,7 +50,7 @@
  *
  */
 
-//  Class ProductTerm
+//  Class ro.anproca.examples.ProductTerm
 //  ------------------------------------------------------------------
 /**
   *   Represents a product term in a boolean expression.
@@ -137,7 +137,7 @@
       *   Returns true if this and target can be reduced by eliminating
       *   one variable.
       *
-      *   @param target   The ProductTerm to be combined with this one.
+      *   @param target   The ro.anproca.examples.ProductTerm to be combined with this one.
       *   @param reduced  The potentially reduced product term, which
       *                   will have its value and mask set if reduction
       *                   can be done.
