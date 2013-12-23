@@ -36,6 +36,11 @@
                         </plugin>
                         <plugin>
                             <groupId>org.jvnet.jaxb2_commons</groupId>
+                            <artifactId>jaxb2-basics-annotate</artifactId>
+                            <version>0.6.2</version>
+                        </plugin>
+                        <plugin>
+                            <groupId>org.jvnet.jaxb2_commons</groupId>
                             <artifactId>jaxb2-fluent-api</artifactId>
                             <version>3.0</version>
                         </plugin>
@@ -51,7 +56,7 @@
                             <schemaIncludes>
                                 <include>LdapQuery.xsd</include>
                             </schemaIncludes>
-                            <generatePackage>ro.anproca.examples.ldapfilter</generatePackage>
+                            <generatePackage>ro.anproca.examples.ldapfilter.model</generatePackage>
                             <generateDirectory>${project.build.directory}/generated-sources</generateDirectory>
                         </configuration>
                     </execution>

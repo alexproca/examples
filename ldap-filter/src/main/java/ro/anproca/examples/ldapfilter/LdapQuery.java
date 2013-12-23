@@ -1,8 +1,6 @@
 package ro.anproca.examples.ldapfilter;
 
 
-import java.util.Collection;
-
 public class LdapQuery {
 
     public LdapQuery present(String attributeName) {
@@ -36,7 +34,6 @@ public class LdapQuery {
     public LdapQuery not(LdapQuery negativeQuery) {
         throw new UnsupportedOperationException("Not implemented");
     }
-
 
 
 }

@@ -1,41 +1,53 @@
 package ro.anproca.examples.ldapfilter;
 
-import com.google.common.base.Splitter;
-import com.google.common.collect.FluentIterable;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import ro.anproca.examples.ldapfilter.model.AttributeValueAssertion;
+import ro.anproca.examples.ldapfilter.model.Filter;
 
-import java.util.Collection;
-import java.util.Collections;
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.Marshaller;
+import java.io.StringWriter;
 
 public class FilterTest {
 
     @BeforeClass
-    public static void startServer()
-    {
-        EmbeddedADSVer157.main(null);
+    public static void startServer() {
+//        EmbeddedADSVer157.main(null);
     }
 
     @Test
     public void testFilter() throws Exception {
 
-        ObjectFactory factory = new ObjectFactory();
+        Filter filter = new Filter()
+                .withAnd(
+                        new Filter()
+                                .withEqualityMatch(
+                                        new AttributeValueAssertion()
+                                                .withAttributeDesc("one").withAssertionValue("1")
+                                )
+                )
+                .withAnd(
+                        new Filter()
+                                .withEqualityMatch(
+                                        new AttributeValueAssertion()
+                                                .withAttributeDesc("one").withAssertionValue("1")
+                                )
+                );
 
-        Filter filter = factory.createFilter();
+        JAXBContext context = JAXBContext.newInstance(ro.anproca.examples.ldapfilter.model.LdapQuery.class);
 
+        Marshaller m = context.createMarshaller();
 
-        Filter.And and = factory.createFilterAnd();
+        m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+        m.setProperty(Marshaller.JAXB_FRAGMENT, true);
+
+        StringWriter out = new StringWriter();
+
+        m.marshal(new ro.anproca.examples.ldapfilter.model.LdapQuery().withFilter(filter), out);
+
+        System.out.println(out);
 
     }
 
-    @Test
-    public void testDSL() throws Exception {
-
-
-        System.out.println("ok");
-//        Splitter.on(' ').trimResults();
-
-//        FluentIterable.from(Collections.emptyList()).anyMatch(null);
-
-    }
 }
