@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<persistence version="1.0" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd
+http://java.sun.com/xml/ns/persistence/orm http://java.sun.com/xml/ns/persistence/orm_1_0.xsd" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:orm="http://java.sun.com/xml/ns/persistence/orm" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <persistence-unit name="ro.anproca.example">
+	   <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+       <exclude-unlisted-classes>true</exclude-unlisted-classes>
+	   <mapping-file>META-INF/jpql/SimpleQueries.xml</mapping-file>
+
+        <properties>
+            <property name="eclipselink.target-database" value="Derby"/>
+            <property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.EmbeddedDriver"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:derby:memory:ro.aproca.example.database;create=true"/>
+            <property name="javax.persistence.jdbc.user" value="app"/>
+            <property name="javax.persistence.jdbc.password" value="app"/>
+			
+			<property name="eclipselink.logging.logger" value="JavaLogger"/>
+            <property name="eclipselink.orm.throw.exceptions" value="true"/>
+            <property name="eclipselink.jdbc.read-connections.min" value="1"/>
+            <property name="eclipselink.jdbc.write-connections.min" value="1"/>                        
+            <property name="eclipselink.ddl-generation" value="drop-and-create-tables"/>
+            <property name="eclipselink.weaving" value="false"/>
+
+        </properties>
+		
+	</persistence-unit>
+</persistence>

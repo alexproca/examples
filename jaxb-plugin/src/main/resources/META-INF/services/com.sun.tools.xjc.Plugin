@@ -1,0 +1,4 @@
+com.axway.migration.xjc.CloneablePlugin
+com.axway.migration.xjc.PrimitiveFixerPlugin
+com.axway.migration.xjc.MigrationHashCodePlugin
+com.axway.migration.xjc.MigrationEqualsPlugin

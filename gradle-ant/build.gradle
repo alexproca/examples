@@ -1,0 +1,12 @@
+configurations {
+	hjb3
+}
+
+dependencies {
+	hjb3 group: 'org.jvnet.hyperjaxb3', name: 'hyperjaxb3', version: '0.5.6'
+}
+
+task hello << {
+	String greeting = 'hello from ant'
+	ant.echo(message: greeting)
+}

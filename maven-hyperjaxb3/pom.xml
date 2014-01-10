@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>ro.anproca.examples</groupId>
+    <artifactId>generate-pojo-with-hyperjaxb</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <name>How to generate pojo class with hyperjaxb3</name>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.6</source>
+                    <target>1.6</target>
+                </configuration>
+            </plugin>
+            <!--<plugin>-->
+                <!--<artifactId>maven-antrun-plugin</artifactId>-->
+                <!--<executions>-->
+                    <!--<execution>-->
+                        <!--<phase>process-classes</phase>-->
+                        <!--<configuration>-->
+                            <!--<target>-->
+                                <!--<taskdef name="weaver"-->
+                                         <!--classname="org.eclipse.persistence.tools.weaving.jpa.StaticWeaveAntTask"-->
+                                         <!--classpathref="maven.runtime.classpath"/>-->
+                                <!--<weaver source="${project.build.directory}/classes"-->
+                                        <!--target="${project.build.directory}/classes"-->
+                                        <!--log="${project.build.directory}/weaving.log" logLevel="FINEST"-->
+                                        <!--persistenceinfo="${project.build.directory}/generated-sources/xjc/"-->
+                                        <!--jaxbAnnotationsMode="field">-->
+                                    <!--<classpath>-->
+                                        <!--<path refid="maven.runtime.classpath"/>-->
+                                    <!--</classpath>-->
+                                <!--</weaver>-->
+                            <!--</target>-->
+                        <!--</configuration>-->
+                        <!--<goals>-->
+                            <!--<goal>run</goal>-->
+                        <!--</goals>-->
+                    <!--</execution>-->
+                <!--</executions>-->
+            <!--</plugin>-->
+            <plugin>
+                <groupId>org.jvnet.hyperjaxb3</groupId>
+                <artifactId>maven-hyperjaxb3-plugin</artifactId>
+                <version>0.5.6</version>
+                <executions>
+                    <execution>
+                        <id>model_schema</id>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <schemaDirectory>${basedir}/src/main/resources/schema</schemaDirectory>
+                            <schemaIncludes>
+                                <schemaInclude>description.xsd</schemaInclude>
+                            </schemaIncludes>
+                            <!--<bindingIncludes>-->
+                                <!--<bindingInclude>bindings.xjb</bindingInclude>-->
+                            <!--</bindingIncludes>-->
+                            <generatePackage>ro.anproca.example</generatePackage>
+                            <generateEquals>false</generateEquals>
+                            <generateHashCode>false</generateHashCode>
+                            <generateDirectory>${project.build.directory}/generated-sources/xjc</generateDirectory>
+                            <args>
+                                <!--<arg>-Xfix-primitives</arg>-->
+                                <arg>-Xannotate</arg>
+                                <arg>-Xdefault-value</arg>
+                                <arg>-Xcopyable</arg>
+                                <arg>-Xmergeable</arg>
+                                <!--<arg>-Xequals-hjid</arg>-->
+                                <!--<arg>-XhashCode-hjid</arg>-->
+                                <!-- arg>-XtoString</arg -->
+                                <!--<arg>-Xhyperjaxb3-ejb-persistenceUnitName=ro.anproca.example</arg>-->
+                            </args>
+                            <plugins>
+                                <plugin>
+                                    <groupId>org.jvnet.jaxb2_commons</groupId>
+                                    <artifactId>jaxb2-basics-annotate</artifactId>
+                                    <version>0.6.3</version>
+                                </plugin>
+                                <plugin>
+                                    <groupId>org.jvnet.jaxb2_commons</groupId>
+                                    <artifactId>jaxb2-default-value</artifactId>
+                                    <version>1.1</version>
+                                </plugin>
+                            </plugins>
+                            <strict>true</strict>
+                            <extension>true</extension>
+                            <persistenceXml>${basedir}/src/main/resources/schema/persistence.xml</persistenceXml>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+    <dependencies>
+        <!--<dependency>-->
+        <!--<groupId>org.eclipse.persistence</groupId>-->
+        <!--<artifactId>eclipselink</artifactId>-->
+        <!--<version>2.4.1</version>-->
+        <!--</dependency>-->
+        <dependency>
+            <groupId>org.eclipse.persistence</groupId>
+            <artifactId>javax.persistence</artifactId>
+            <version>2.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jvnet.hyperjaxb3</groupId>
+            <artifactId>hyperjaxb3-ejb-runtime</artifactId>
+            <version>0.5.6</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jvnet.hyperjaxb3</groupId>
+            <artifactId>hyperjaxb3-ejb-roundtrip</artifactId>
+            <version>0.5.6</version>
+        </dependency>
+    </dependencies>
+</project>
