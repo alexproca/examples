@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>ro.anproca.examples</groupId>
+    <artifactId>swt-example</artifactId>
+    <packaging>bundle</packaging>
+    <version>0.0.1-SNAPSHOT</version>
+
+    <repositories>
+        <repository>
+            <id>swt-repo</id>
+            <url>https://swt-repo.googlecode.com/svn/repo/</url>
+        </repository>
+        <repository>
+            <id>m2eclipse-repo</id>
+            <url>https://m2eclipse-repo.googlecode.com/svn/trunk/repository/</url>
+        </repository>
+    </repositories>
+
+    <dependencies>
+        <!--<dependency>-->
+            <!--<groupId>org.eclipse.swt.org.eclipse.swt.gtk.linux.x86_64.4.3.swt</groupId>-->
+            <!--<artifactId>org.eclipse.swt.gtk.linux.x86_64</artifactId>-->
+            <!--<version>4.3</version>-->
+        <!--</dependency>-->
+        <dependency>
+            <groupId>org.eclipse</groupId>
+            <artifactId>swt</artifactId>
+            <version>3.102.1-v20130827-2021</version>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse.swt.gtk.linux</groupId>
+            <artifactId>x86_64</artifactId>
+            <version>3.102.1-v20130827-2048</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.felix</groupId>
+            <artifactId>org.apache.felix.scr.ds-annotations</artifactId>
+            <version>1.2.4</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.osgi</groupId>
+            <artifactId>org.osgi.compendium</artifactId>
+            <version>4.3.0</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>maven-bundle-plugin</artifactId>
+                <version>2.4.0</version>
+                <extensions>true</extensions>
+                <inherited>true</inherited>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>maven-scr-plugin</artifactId>
+                <version>1.15.0</version>
+                <executions>
+                    <execution>
+                        <id>generate-scr-scrdescriptor</id>
+                        <goals>
+                            <goal>scr</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
